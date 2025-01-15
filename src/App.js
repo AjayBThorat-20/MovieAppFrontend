@@ -71,3 +71,6 @@ export default App;
 
 // .env
 // http://localhost:7001/api
+
+
+// https://movieappbackend-production-b71e.up.railway.app/api
