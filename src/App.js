@@ -69,5 +69,5 @@ export default App;
 
 
 
-
-
+// .env
+// http://localhost:7001/api
