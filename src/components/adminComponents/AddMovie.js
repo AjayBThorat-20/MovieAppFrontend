@@ -20,20 +20,36 @@ const AddMovie = ({ open, onClose, onMovieAdded }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Validate Form
   const validateForm = () => {
     if (!formData.name || !formData.description || !formData.rating || 
         !formData.releaseDate || !formData.duration) {
       setError('All fields are required');
       return false;
     }
+
+    // Rating validation: Ensure it's a number between 0 and 10
     if (isNaN(formData.rating) || formData.rating < 0 || formData.rating > 10) {
       setError('Rating must be between 0 and 10');
       return false;
     }
-    if (!formData.duration.match(/^\d+h \d+m$/)) {
+
+    // Duration validation: Ensure format is "2h 30m"
+    const durationRegex = /^\d+h \d+m$/;
+    if (!formData.duration.match(durationRegex)) {
       setError('Duration must be in format: "2h 30m"');
       return false;
     }
+
+    // Release Date validation: Ensure it's a valid date
+    const releaseDate = new Date(formData.releaseDate);
+    if (isNaN(releaseDate)) {
+      setError('Invalid release date');
+      return false;
+    }
+
+    // Reset error if form is valid
+    setError('');
     return true;
   };
 
